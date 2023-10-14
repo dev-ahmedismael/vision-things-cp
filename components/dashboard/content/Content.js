@@ -69,9 +69,12 @@ const Content = () => {
     event.preventDefault();
 
     const formData = new FormData(event.currentTarget);
-    [...files].forEach((file, i) => {
-      formData.append(`file_${i + 1}`, file, file.name);
-    });
+    if (files) {
+      [...files].forEach((file, i) => {
+        formData.append(`file_${i + 1}`, file, file.name);
+      });
+    }
+
     const data = Object.fromEntries(formData);
     await axios
       .post(url, data, {
