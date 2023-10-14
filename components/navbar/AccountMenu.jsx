@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Avatar from "@mui/material/Avatar";
@@ -11,8 +11,8 @@ import Tooltip from "@mui/material/Tooltip";
 import Logout from "@mui/icons-material/Logout";
 import Image from "next/image";
 import Link from "next/link";
-import {useDispatch, useSelector} from "react-redux";
-import { logout } from "@/store/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { logoutUser } from "@/store/userSlice";
 import { useRouter } from "next/navigation";
 import { Typography } from "@mui/material";
 import urls from "@/public/data/urls.json";
@@ -32,13 +32,15 @@ export default function AccountMenu() {
   const defaultProfilePic = "/images/profile_pic.jpg";
   const router = useRouter();
   const logout = () => {
+    dispatch(logoutUser());
+    localStorage.removeItem("userID");
     router.push("/");
   };
 
   // User data
   const base_url = urls.base_url;
-  const username = useSelector((state)=>state.user.username);
-  const profile_pic = useSelector((state)=>state.user.profilePic);
+  const username = useSelector((state) => state.user.username);
+  const profile_pic = useSelector((state) => state.user.profilePic);
 
   return (
     <React.Fragment>
@@ -52,7 +54,9 @@ export default function AccountMenu() {
             aria-expanded={open ? "true" : undefined}
           >
             <Image
-              src={profile_pic ? `${base_url}/${profile_pic}`: defaultProfilePic}
+              src={
+                profile_pic ? `${base_url}/${profile_pic}` : defaultProfilePic
+              }
               width={40}
               height={40}
               alt="profile picture"
@@ -98,7 +102,9 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
       >
         <MenuItem onClick={handleClose}>
-          <Avatar src={profile_pic ? `${base_url}/${profile_pic}`: defaultProfilePic} />
+          <Avatar
+            src={profile_pic ? `${base_url}/${profile_pic}` : defaultProfilePic}
+          />
           <Typography mr={3}>{username}</Typography>
         </MenuItem>
         <Divider />

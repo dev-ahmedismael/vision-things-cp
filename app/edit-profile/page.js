@@ -1,9 +1,16 @@
 import EditProfile from "@/components/edit-profile/EditProfile";
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 export default function Home() {
-    return (
-        <main>
-            <EditProfile />
-        </main>
-    );
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const router = useRouter();
+  if (!isLoggedIn) {
+    router.push("/");
+  }
+  return (
+    <main>
+      <EditProfile />
+    </main>
+  );
 }
