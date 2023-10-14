@@ -1,0 +1,93 @@
+[
+  {
+    "id": 1,
+    "title": "صندوق البريد",
+    "content": [
+      {
+        "id": 1,
+        "title": "رسائل المهتمين",
+        "url": "/dashboard/interested-messages"
+      },
+      {
+        "id": 2,
+        "title": "رسائل الزوار",
+        "url": "/dashboard/visitors-messages"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "title": "ادارة صفحات الموقع",
+    "content": [
+      {
+        "id": 1,
+        "title": "عناصر شريط التنقل",
+        "url": "/dashboard/navbar-elements"
+      },
+      {
+        "id": 2,
+        "title": "الصفحات",
+        "url": "/dashboard/pages"
+      },
+      {
+        "id": 3,
+        "title": "المحتوى",
+        "url": "/dashboard/content"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "title": "العقود",
+    "content": [
+      {
+        "id": 1,
+        "title": "ادارة العقود",
+        "url": "/dashboard/contracts-management"
+      },
+      {
+        "id": 2,
+        "title": "اضافة عقد جديد",
+        "url": "/dashboard/create-contract"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "title": "كوبونات الخصم",
+    "content": [
+      {
+        "id": 1,
+        "title": "ادارة كوبونات الخصم",
+        "url": "/dashboard/promocodes-management"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "title": "الأعضاء",
+    "content": [
+      {
+        "id": 1,
+        "title": "ادارة الاعضاء",
+        "url": "/dashboard/members-management"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "التقارير",
+    "content": [
+      {
+        "id": 1,
+        "title": "تقرير الزيارات",
+        "url": "/dashboard/visits-report"
+      },
+      {
+        "id": 2,
+        "title": "تقرير المبيعات",
+        "url": "/dashboard/sales-report"
+      }
+    ]
+  }
+]
