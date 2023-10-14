@@ -1,3 +1,4 @@
+"use client";
 import DashboardHome from "@/components/dashboard/home/DashboardHome";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";

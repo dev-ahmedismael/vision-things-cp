@@ -1,3 +1,4 @@
+"use client";
 import EditProfile from "@/components/edit-profile/EditProfile";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
