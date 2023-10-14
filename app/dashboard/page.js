@@ -6,8 +6,10 @@ import { useSelector } from "react-redux";
 export default function Home() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const router = useRouter();
-  if (!isLoggedIn) {
-    router.push("/");
+  if (typeof window !== "undefined") {
+    if (!isLoggedIn) {
+      router.push("/");
+    }
   }
   return (
     <main>
