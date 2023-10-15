@@ -239,6 +239,8 @@ export default function ContentTable({
                     fullWidth
                     defaultValue={shown?.content_ar}
                     required
+                    multiline
+                    minRows={6}
                   />
                 </Grid>
                 <Grid item xs={6}>
@@ -249,13 +251,15 @@ export default function ContentTable({
                     fullWidth
                     defaultValue={shown?.content_en}
                     required
+                    multiline
+                    minRows={6}
                   />
                 </Grid>
                 <Grid item xs={6}>
                   <input
                     type="file"
                     variant="standard"
-                    name="image"
+                    name="file_1"
                     fullWidth
                     multiple
                   />
