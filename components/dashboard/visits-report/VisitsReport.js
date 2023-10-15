@@ -84,8 +84,7 @@ export default function VisitsReport() {
     axios
       .get(url)
       .then((res) => {
-        // setTableRows(res.data);
-        console.log(res.data);
+        setTableRows(res.data);
       })
       .catch((err) =>
         alert(
