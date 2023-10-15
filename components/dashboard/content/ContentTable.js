@@ -169,7 +169,7 @@ export default function ContentTable({
           <Typography id="modal-modal-title" variant="h6" component="h2">
             تعديل
           </Typography>
-          <Box id="modal-modal-description" sx={{ mt: 2 }}>
+          <Box id="modal-modal-description" sx={{ mt: 2, overflowY: "scroll" }}>
             <form onSubmit={update}>
               <Grid container spacing={5}>
                 <Grid item xs={6}>
