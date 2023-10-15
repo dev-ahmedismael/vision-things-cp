@@ -14,6 +14,7 @@ import {
   Alert,
   Box,
   Button,
+  Container,
   FormControl,
   Grid,
   MenuItem,
@@ -52,9 +53,8 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 500,
-  maxHeight: "90vh",
-  overFlow: "scroll",
+  width: 700,
+  maxHeight: "60vh",
   bgcolor: "white",
   boxShadow: 24,
   p: 4,
@@ -169,127 +169,137 @@ export default function ContentTable({
           <Typography id="modal-modal-title" variant="h6" component="h2">
             تعديل
           </Typography>
-          <Box id="modal-modal-description" sx={{ mt: 2, overflowY: "scroll" }}>
-            <form onSubmit={update}>
-              <Grid container spacing={5}>
-                <Grid item xs={6}>
-                  <TextField
-                    select
-                    variant="standard"
-                    label="اسم الصفحة المراد اضافة المحتوى اليها"
-                    value={page}
-                    onChange={handleChange}
-                    name="page_id"
-                    fullWidth
-                    required
-                    defaultValue={shown?.page_id}
-                  >
-                    {pages.map((e) => (
-                      <MenuItem key={e.id} value={e.id}>
-                        {e.title_ar}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-                <Grid item xs={6}>
-                  <TextField
-                    select
-                    variant="standard"
-                    label="طريقة عرض المحتوى بالصفحة"
-                    name="content_type"
-                    fullWidth
-                    value={contentType}
-                    onChange={handleContentChange}
-                    defaultValue={shown?.content_type}
-                    required
-                  >
-                    {contentTypes.map((e) => (
-                      <MenuItem key={e.id} value={e.value}>
-                        {e.title}
-                      </MenuItem>
-                    ))}
-                  </TextField>
-                </Grid>
-                <Grid item xs={6}>
-                  <TextField
-                    variant="standard"
-                    label="عنوان المحتوى باللغة العربية"
-                    name="title_ar"
-                    fullWidth
-                    defaultValue={shown?.title_ar}
-                    required
-                  />
-                </Grid>
+          <Box
+            id="modal-modal-description"
+            sx={{
+              mt: 2,
+              maxHeight: 300,
+              overflowY: "scroll",
+              overflowX: "hidden",
+            }}
+          >
+            <Container>
+              <form onSubmit={update}>
+                <Grid container spacing={5}>
+                  <Grid item xs={6}>
+                    <TextField
+                      select
+                      variant="standard"
+                      label="اسم الصفحة المراد اضافة المحتوى اليها"
+                      value={page}
+                      onChange={handleChange}
+                      name="page_id"
+                      fullWidth
+                      required
+                      defaultValue={shown?.page_id}
+                    >
+                      {pages.map((e) => (
+                        <MenuItem key={e.id} value={e.id}>
+                          {e.title_ar}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      select
+                      variant="standard"
+                      label="طريقة عرض المحتوى بالصفحة"
+                      name="content_type"
+                      fullWidth
+                      value={contentType}
+                      onChange={handleContentChange}
+                      defaultValue={shown?.content_type}
+                      required
+                    >
+                      {contentTypes.map((e) => (
+                        <MenuItem key={e.id} value={e.value}>
+                          {e.title}
+                        </MenuItem>
+                      ))}
+                    </TextField>
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      variant="standard"
+                      label="عنوان المحتوى باللغة العربية"
+                      name="title_ar"
+                      fullWidth
+                      defaultValue={shown?.title_ar}
+                      required
+                    />
+                  </Grid>
 
-                <Grid item xs={6}>
-                  <TextField
-                    variant="standard"
-                    label="عنوان المحتوى باللغة الانجليزية"
-                    name="title_en"
-                    fullWidth
-                    defaultValue={shown?.title_en}
-                    required
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <TextField
-                    variant="standard"
-                    label=" المحتوى باللغة العربية"
-                    name="content_ar"
-                    fullWidth
-                    defaultValue={shown?.content_ar}
-                    required
-                    multiline
-                    minRows={6}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <TextField
-                    variant="standard"
-                    label="المحتوى باللغة الانجليزية"
-                    name="content_en"
-                    fullWidth
-                    defaultValue={shown?.content_en}
-                    required
-                    multiline
-                    minRows={6}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <input
-                    type="file"
-                    variant="standard"
-                    name="file_1"
-                    fullWidth
-                    multiple
-                  />
-                </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      variant="standard"
+                      label="عنوان المحتوى باللغة الانجليزية"
+                      name="title_en"
+                      fullWidth
+                      defaultValue={shown?.title_en}
+                      required
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      variant="standard"
+                      label=" المحتوى باللغة العربية"
+                      name="content_ar"
+                      fullWidth
+                      defaultValue={shown?.content_ar}
+                      required
+                      multiline
+                      minRows={6}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <TextField
+                      variant="standard"
+                      label="المحتوى باللغة الانجليزية"
+                      name="content_en"
+                      fullWidth
+                      defaultValue={shown?.content_en}
+                      required
+                      multiline
+                      minRows={6}
+                    />
+                  </Grid>
+                  <Grid item xs={6}>
+                    <input
+                      type="file"
+                      variant="standard"
+                      name="file_1"
+                      fullWidth
+                      multiple
+                    />
+                  </Grid>
 
-                <Grid item xs={12}>
-                  {resMsg !== null && (
-                    <Alert severity="success">{resMsg}</Alert>
-                  )}
-                </Grid>
-                <Grid
-                  item
-                  xs={12}
-                  display={"flex"}
-                  justifyContent={"space-between"}
-                >
-                  <Button type="submit" variant="contained">
-                    تعديل المحتوى{" "}
-                  </Button>
-                  <Button
-                    type="submit"
-                    variant="contained"
-                    color="error"
-                    onClick={handleClose}
+                  <Grid item xs={12}>
+                    {resMsg !== null && (
+                      <Alert severity="success">{resMsg}</Alert>
+                    )}
+                  </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    display={"flex"}
+                    justifyContent={"space-between"}
                   >
-                    اغلاق
-                  </Button>
+                    <Button type="submit" variant="contained">
+                      تعديل المحتوى{" "}
+                    </Button>
+                    <Button
+                      type="submit"
+                      variant="contained"
+                      color="error"
+                      onClick={handleClose}
+                    >
+                      اغلاق
+                    </Button>
+                  </Grid>
                 </Grid>
-              </Grid>
-            </form>
+              </form>
+            </Container>
           </Box>
         </Box>
       </Modal>
