@@ -39,7 +39,12 @@ const HomeBoxes = () => {
     <Grid container spacing={5}>
       {items.map((item) => (
         <Grid item xs={12} sm={4} key={item.id}>
-          <Box bgcolor={"#51a29d"} color="white" borderRadius={2}>
+          <Box
+            className="green-box"
+            color="white"
+            borderRadius={2}
+            boxShadow={3}
+          >
             <Container>
               <Box
                 display={"flex"}
