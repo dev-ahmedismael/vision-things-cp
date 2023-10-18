@@ -114,35 +114,27 @@ const cities = [
 ];
 
 const companyTypes = [
-  "Not a company",
-  "Oil & Gas companies",
-  "Constructions & Real Estate",
-  "Finance & Banking",
-  "Technology & IT",
-  "Retails & Consumer goods",
-  "Health care & Hospitals",
-  "Manufactoring & Heavy industries",
-  "Tourism & Hospitality",
-  "Education & Universities",
-  "Transportation & Logistics",
-  "Agriculture & Environmental farming",
-  "Media & Communications",
-  "Energy & Alternative energy sources",
+  "شركة تضامن",
+  "شركة توصية بسيطة",
+  "شركة مساهمة",
+  "شركة مساهمة مبسطة",
+  "شركة ذات مسئولية محدودة",
+  "مؤسسة فردية",
 ];
 
 const periods = [
-  "1 Month",
-  "2 Months",
-  "3 Months",
-  "4 Months",
-  "5 Months",
-  "6 Months",
-  "7 Months",
-  "8 Months",
-  "9 Months",
-  "10 Months",
-  "11 Months",
-  "12 Months",
+  "1 شهر",
+  "2 شهر",
+  "3 شهر",
+  "4 شهر",
+  "5 شهر",
+  "6 شهر",
+  "7 شهر",
+  "8 شهر",
+  "9 شهر",
+  "10 شهر",
+  "11 شهر",
+  "12 شهر",
 ];
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -275,7 +267,7 @@ export default function ContractsTable({
   // Contract points
   const points = [
     `1. تكون الصيانة لمدة سنة ميلادية وتبدأ من تاريخ ${shown?.contract_date} وتنتهي بتاريخ
- ${shown?.expiry_date} وتكلفة الزيارة (750) سبعمائة وخمسين ریال غير شامل الضريبة تدفع مقدما.`,
+ ${shown?.expiry_date}.`,
     `2. تكلفة الزيارة (750) سبعمائة وخمسين ریال غير شامل الضريبة تدفع مقدما.`,
     `3. يقوم الطرف الأول بإبلاغ الطرف الثاني بالقطع التالفة أو الغير صالحة للاستعمال.`,
     `4. الطرف الأول غير مسئول عن أي إضافات جديدة على النظام الموجود.`,
@@ -284,7 +276,7 @@ export default function ContractsTable({
     `6. لا يشمل عقد الصيانة الأعطال الكهربائية أو ما ينتج عنها من أضرار.`,
     `7. يقر الطرف الثاني بأن الأعداد والكميات وجميع المعلومات الموضح في الجدول أعلاه صحيـحـة ويـتحمل مسئولية أى خطأ تم عند إدخاله هذه البيانات.`,
     `8. يقوم الطرف الثاني بإرسال طلبات الصيانة بشكل رسمي او الكتروني عبر الوسائل التالية
-جوال بريد الكتروني`,
+جوال ( 00966581077506 ) بريد الكتروني ( info@vision-things.com ).`,
     `9. عند حدوث أي اختلاف بين الطرفين فإنه يتم حله ودياً وإذا تعذر ذلك يلجأ الطرفين إلى التحكيم فى المملكة العربية السعودية.`,
   ];
 
@@ -831,6 +823,8 @@ export default function ContractsTable({
           width={2480}
         >
           <Box pl={6} pr={10} pt={8}>
+            {/* Date */}
+            <p className="m-0">التاريخ/ {shown?.contract_date}</p>
             {/* QR Code */}
             <Box px={3}>
               <QRCode
@@ -844,8 +838,6 @@ export default function ContractsTable({
               <Box display={"flex"} justifyContent={"center"} mt={-2}>
                 <h4 className="m-0">عـقـد صـيـانـة كـامـيـرات مـراقـبـة</h4>
               </Box>
-              {/* Date */}
-              <p className="m-0">التاريخ/ {shown?.contract_date}</p>
             </Box>
 
             <p>تم الاتفاق بين كل من</p>
@@ -870,35 +862,38 @@ export default function ContractsTable({
               الثاني وهي كالاتي :
             </p>
             <div style={{ paddingTop: "10px", paddingBottom: "10px" }}>
-              <table width={"100%"} style={{ borderBottom: "3px solid black" }}>
+              <table width={"100%"}>
                 <tbody>
                   <tr>
+                    <td>
+                      <p>عدد الكاميرات الداخلية</p>
+                    </td>
                     <td>
                       <p>{parseInt(shown?.indoor_cameras)}</p>
                     </td>
                     <td>
-                      <p>عدد الكاميرات الداخلية</p>
-                    </td>
-                    <td>{shown?.storage_device}</td>
-                    <td>
                       <p>نوع جهاز التخزين</p>
                     </td>
+                    <td>{shown?.storage_device}</td>
                   </tr>
                   <tr>
-                    <td>
-                      <p>{parseInt(shown?.outdoor_cameras)}</p>
-                    </td>
                     <td>
                       <p>عدد الكاميرات الخارجية</p>
                     </td>
                     <td>
-                      <p>{shown?.period_of_record}</p>
+                      <p>{parseInt(shown?.outdoor_cameras)}</p>
                     </td>
                     <td>
                       <p>سعة جهاز التخزين</p>
                     </td>
+                    <td>
+                      <p>{shown?.period_of_record}</p>
+                    </td>
                   </tr>
                   <tr>
+                    <td>
+                      <p>مجموع الكاميرات</p>
+                    </td>
                     <td>
                       <p>
                         {parseInt(shown?.outdoor_cameras) +
@@ -906,13 +901,19 @@ export default function ContractsTable({
                       </p>
                     </td>
                     <td>
-                      <p>مجموع الكاميرات</p>
+                      <p>عدد شاشات العرض</p>
                     </td>
                     <td>
                       <p>{shown?.show_screens}</p>
                     </td>
-                    <td>
-                      <p>عدد شاشات العرض</p>
+                  </tr>
+                  <tr>
+                    <td>نوع الكاميرات</td>
+                    <td colSpan={3}>
+                      عدد{" "}
+                      {parseInt(shown?.outdoor_cameras) +
+                        parseInt(shown?.indoor_cameras)}{" "}
+                      كاميرا من نوع {shown?.camera_type}
                     </td>
                   </tr>
                 </tbody>

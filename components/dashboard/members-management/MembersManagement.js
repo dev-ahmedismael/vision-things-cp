@@ -52,18 +52,20 @@ const MembersManagement = () => {
 
     const data = Object.fromEntries(formData);
     await axios
-        .post(url, data, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        })
-        .then((res) => {
-          setTableRows((prev) => [...prev, res.data]);
-        })
-        .finally(event.currentTarget.reset())
-        .catch((err) => {
-          alert("يوجد خطأ فى الاتصال بقاعدة البيانات، يرجى التحقق من صحة البيانات والمحاولة مرة أخرى")
-        });
+      .post(url, data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
+      .then((res) => {
+        setTableRows((prev) => [...prev, res.data]);
+      })
+      .finally(event.currentTarget.reset())
+      .catch((err) => {
+        alert(
+          "يوجد خطأ فى الاتصال بقاعدة البيانات، يرجى التحقق من صحة البيانات والمحاولة مرة أخرى"
+        );
+      });
   };
 
   // Show
@@ -115,6 +117,7 @@ const MembersManagement = () => {
     manage_promocodes: false,
     manage_members: false,
     view_reports: false,
+    view_mail: false,
   });
 
   const handleChange = (event) => {
@@ -131,6 +134,7 @@ const MembersManagement = () => {
     manage_promocodes,
     manage_members,
     view_reports,
+    view_mail,
   } = state;
 
   return (
@@ -206,6 +210,14 @@ const MembersManagement = () => {
               control={<Checkbox name="view_reports" />}
               label="الاطلاع على التقارير"
               checked={view_reports}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <FormControlLabel
+              control={<Checkbox name="view_mail" />}
+              label="الاطلاع على الرسائل"
+              checked={view_mail}
               onChange={handleChange}
             />
           </Grid>

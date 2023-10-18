@@ -246,6 +246,17 @@ export default function MembersManagementTable({
                       label="الاطلاع على التقارير"
                     />
                   </Grid>
+                  <Grid item xs={6}>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          name="view_mail"
+                          defaultChecked={shown?.view_mail === "on"}
+                        />
+                      }
+                      label="الاطلاع على الرسائل"
+                    />
+                  </Grid>
 
                   <Grid item xs={12}>
                     {resMsg !== null && (

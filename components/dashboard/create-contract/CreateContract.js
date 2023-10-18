@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Section from "@/templates/Section";
 import {
   Box,
@@ -65,7 +65,7 @@ const validationSchema = yup.object({
   camera_type: yup.string().required(),
   paid_amount: yup
     .string()
-    .required("ادخل اجمالي المدفوع")
+    .required("ادخل اجمالي قيمة العقد قبل الخصم")
     .matches(/^[0-9]+$/, "ادخل رقم صالح"),
   discount: yup
     .string()
@@ -113,37 +113,28 @@ const CreateContract = () => {
   ];
 
   const companyTypes = [
-    "Not a company",
-    "Oil & Gas companies",
-    "Constructions & Real Estate",
-    "Finance & Banking",
-    "Technology & IT",
-    "Retails & Consumer goods",
-    "Health care & Hospitals",
-    "Manufactoring & Heavy industries",
-    "Tourism & Hospitality",
-    "Education & Universities",
-    "Transportation & Logistics",
-    "Agriculture & Environmental farming",
-    "Media & Communications",
-    "Energy & Alternative energy sources",
+    "شركة تضامن",
+    "شركة توصية بسيطة",
+    "شركة مساهمة",
+    "شركة مساهمة مبسطة",
+    "شركة ذات مسئولية محدودة",
+    "مؤسسة فردية",
   ];
 
   const periods = [
-    "1 Month",
-    "2 Months",
-    "3 Months",
-    "4 Months",
-    "5 Months",
-    "6 Months",
-    "7 Months",
-    "8 Months",
-    "9 Months",
-    "10 Months",
-    "11 Months",
-    "12 Months",
+    "1 شهر",
+    "2 شهر",
+    "3 شهر",
+    "4 شهر",
+    "5 شهر",
+    "6 شهر",
+    "7 شهر",
+    "8 شهر",
+    "9 شهر",
+    "10 شهر",
+    "11 شهر",
+    "12 شهر",
   ];
-
   // Handle modal
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -169,6 +160,7 @@ const CreateContract = () => {
       );
   };
   const contractNumber = Math.floor(Math.random() * 100000000 + 1);
+
   // contract
   const date = new Date();
 
@@ -184,7 +176,7 @@ const CreateContract = () => {
   } / ${expiryYear.getFullYear()} `;
   const points = [
     `1. تكون الصيانة لمدة سنة ميلادية وتبدأ من تاريخ ${currentDate} وتنتهي بتاريخ
- ${expiryDate} وتكلفة الزيارة (750) سبعمائة وخمسين ریال غير شامل الضريبة تدفع مقدما.`,
+ ${expiryDate}.`,
     `2. تكلفة الزيارة (750) سبعمائة وخمسين ریال غير شامل الضريبة تدفع مقدما.`,
     `3. يقوم الطرف الأول بإبلاغ الطرف الثاني بالقطع التالفة أو الغير صالحة للاستعمال.`,
     `4. الطرف الأول غير مسئول عن أي إضافات جديدة على النظام الموجود.`,
@@ -193,7 +185,7 @@ const CreateContract = () => {
     `6. لا يشمل عقد الصيانة الأعطال الكهربائية أو ما ينتج عنها من أضرار.`,
     `7. يقر الطرف الثاني بأن الأعداد والكميات وجميع المعلومات الموضح في الجدول أعلاه صحيـحـة ويـتحمل مسئولية أى خطأ تم عند إدخاله هذه البيانات.`,
     `8. يقوم الطرف الثاني بإرسال طلبات الصيانة بشكل رسمي او الكتروني عبر الوسائل التالية
-جوال بريد الكتروني`,
+جوال ( 00966581077506 ) بريد الكتروني ( info@vision-things.com ).`,
     `9. عند حدوث أي اختلاف بين الطرفين فإنه يتم حله ودياً وإذا تعذر ذلك يلجأ الطرفين إلى التحكيم فى المملكة العربية السعودية.`,
   ];
 
@@ -215,11 +207,11 @@ const CreateContract = () => {
       name: "",
       phone: "",
       email: "",
-      company_type: "Not a company",
+      company_type: "",
       commercial_number: "",
       tax_number: "",
       address: "",
-      city: "ابها",
+      city: "جدة",
       building_number: "",
       street_name: "",
       second_number: "",
@@ -581,7 +573,7 @@ const CreateContract = () => {
               variant="standard"
               fullWidth
               name="paid_amount"
-              label="اجمالي المدفوع"
+              label="اجمالي قيمة العقد قبل الخصم"
               value={formik.values.paid_amount}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
@@ -667,6 +659,8 @@ const CreateContract = () => {
           width={2480}
         >
           <Box pl={6} pr={10} pt={8}>
+            {/* Date */}
+            <p className="m-0">التاريخ/ {currentDate}</p>
             {/* QR Code */}
             <Box px={3}>
               <QRCode
@@ -675,13 +669,11 @@ const CreateContract = () => {
               />
             </Box>
             <Box pt={2}>
-              <p>رقم العقد </p>
+              <p>رقم العقد {formik.values.contract_number}</p>
               {/* Title */}
               <Box display={"flex"} justifyContent={"center"} mt={-2}>
                 <h4 className="m-0">عـقـد صـيـانـة كـامـيـرات مـراقـبـة</h4>
               </Box>
-              {/* Date */}
-              <p className="m-0">التاريخ/ {currentDate}</p>
             </Box>
 
             <p>تم الاتفاق بين كل من</p>
@@ -707,55 +699,59 @@ const CreateContract = () => {
               الثاني وهي كالاتي :
             </p>
             <div style={{ paddingTop: "10px", paddingBottom: "10px" }}>
-              <table
-                width={"100%"}
-                style={{
-                  borderBottom: "3px solid black",
-                  borderTop: "2px solid black",
-                }}
-              >
+              <table width={"100%"}>
                 <tbody>
                   <tr>
+                    <td>
+                      <p>عدد الكاميرات الداخلية</p>
+                    </td>
                     <td>
                       <p>{parseInt(formik.values.indoor_cameras)}</p>
                     </td>
                     <td>
-                      <p>عدد الكاميرات الداخلية</p>
-                    </td>
-                    <td>{formik.values.storage_device}</td>
-                    <td>
                       <p>نوع جهاز التخزين</p>
                     </td>
+                    <td>{formik.values.storage_device}</td>
                   </tr>
                   <tr>
-                    <td>
-                      <p>{parseInt(formik.values.outdoor_cameras)}</p>
-                    </td>
                     <td>
                       <p>عدد الكاميرات الخارجية</p>
                     </td>
                     <td>
-                      <p>{formik.values.period_of_record}</p>
+                      <p>{parseInt(formik.values.outdoor_cameras)}</p>
                     </td>
                     <td>
                       <p>سعة جهاز التخزين</p>
                     </td>
+                    <td>
+                      <p>{formik.values.period_of_record}</p>
+                    </td>
                   </tr>
                   <tr>
+                    <td>
+                      <p>مجموع الكاميرات</p>
+                    </td>
                     <td>
                       <p>
                         {parseInt(formik.values.outdoor_cameras) +
                           parseInt(formik.values.indoor_cameras)}
                       </p>
                     </td>
+
                     <td>
-                      <p>مجموع الكاميرات</p>
+                      <p>عدد شاشات العرض</p>
                     </td>
                     <td>
                       <p>{formik.values.show_screens}</p>
                     </td>
-                    <td>
-                      <p>عدد شاشات العرض</p>
+                  </tr>
+                  <tr>
+                    <td>نوع الكاميرات</td>
+                    <td colSpan={3}>
+                      عدد{" "}
+                      {parseInt(formik.values.outdoor_cameras) +
+                        parseInt(formik.values.indoor_cameras)}{" "}
+                      كاميرا من نوع {formik.values.camera_type}
                     </td>
                   </tr>
                 </tbody>

@@ -11,6 +11,7 @@ const initialState = {
   manage_pages: false,
   manage_promocodes: false,
   view_reports: false,
+  view_mail: false,
 };
 
 export const userSlice = createSlice({
@@ -50,6 +51,9 @@ export const userSlice = createSlice({
     toggleViewReports: (state) => {
       state.view_reports = true;
     },
+    toggleViewMail: (state) => {
+      state.view_mail = true;
+    },
   },
 });
 
@@ -65,6 +69,7 @@ export const {
   toggleManageMembers,
   toggleManagePages,
   toggleViewReports,
+  toggleViewMail,
   setID,
 } = userSlice.actions;
 

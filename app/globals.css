@@ -104,19 +104,10 @@ button {
 #contract table p {
   text-align: center;
 }
-#contract {
-  width: 210mm;
-  height: 297mm;
-  background-image: url("/images/contract.png");
-  background-size: 100% 100%;
-  direction: rtl;
-  letter-spacing: normal !important;
-}
 
 #contract table,
-#contract tbody,
 #contract td {
-  border: 1px solid black;
+  border: 2px solid black;
   border-collapse: collapse;
 }
 
@@ -127,6 +118,7 @@ button {
 
 #contract p {
   font-size: medium;
+  font-weight: 100;
   margin: 0;
   margin-bottom: 4px;
 }

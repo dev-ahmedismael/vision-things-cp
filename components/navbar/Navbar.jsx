@@ -13,32 +13,39 @@ import {
   setProfilePic,
   setUsername,
   toggleCreateContract,
-  toggleManageContracts, toggleManageMembers, toggleManagePages, toggleManagePromocodes, toggleViewReports
+  toggleManageContracts,
+  toggleManageMembers,
+  toggleManagePages,
+  toggleManagePromocodes,
+  toggleViewMail,
+  toggleViewReports,
 } from "@/store/userSlice";
 import urls from "@/public/data/urls.json";
 
 const Navbar = () => {
   const dispatch = useDispatch();
-  const userID = typeof window !== "undefined" && localStorage.getItem('userID');
+  const userID =
+    typeof window !== "undefined" && localStorage.getItem("userID");
   const url = urls.members;
-  useEffect(()=>{
+  useEffect(() => {
     axios
       .get(`${url}/${userID}`)
       .then((res) => {
         dispatch(loginUser());
-        dispatch(setID(res.data.id))
+        dispatch(setID(res.data.id));
         dispatch(setUsername(res.data.username));
         res.data.profile_pic && dispatch(setProfilePic(res.data.profile_pic));
         res.data.create_contract === "on" && dispatch(toggleCreateContract());
         res.data.manage_contracts === "on" && dispatch(toggleManageContracts());
         res.data.manage_pages === "on" && dispatch(toggleManagePages());
-        res.data.manage_members === 'on' && dispatch(toggleManageMembers());
-        res.data.manage_promocodes === 'on' && dispatch(toggleManagePromocodes());
-        res.data.view_reports === 'on' && dispatch(toggleViewReports());
-
+        res.data.manage_members === "on" && dispatch(toggleManageMembers());
+        res.data.manage_promocodes === "on" &&
+          dispatch(toggleManagePromocodes());
+        res.data.view_reports === "on" && dispatch(toggleViewReports());
+        res.data.view_mail === "on" && dispatch(toggleViewMail());
       })
-      .catch((err) => alert('هناك خطأ فى الاتصال بقاعدة البيانات'))
-  }, [])
+      .catch((err) => alert("هناك خطأ فى الاتصال بقاعدة البيانات"));
+  }, []);
 
   return (
     <nav>
@@ -62,12 +69,7 @@ const Navbar = () => {
             </Box>
             <Link href={"/dashboard"}>
               <Box p={1} borderRadius={2}>
-                <img
-                  src="/images/logo.png"
-                  alt="Logo"
-                  width={30}
-                  height={30}
-                />
+                <img src="/images/logo.png" alt="Logo" width={30} height={30} />
               </Box>
             </Link>
             <Box>

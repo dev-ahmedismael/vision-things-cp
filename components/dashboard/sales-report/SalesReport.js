@@ -62,6 +62,7 @@ export default function SalesReport() {
 
   const tableHead = [
     "تاريخ العملية",
+    "رقم العقد",
     "اسم العميل",
     "اجمالي القيمة ",
     "المدفوع",
@@ -107,22 +108,34 @@ export default function SalesReport() {
                   {row.contract_date}
                 </StyledTableCell>
                 <StyledTableCell component="th" scope="row" align="center">
+                  {row.contract_number}
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row" align="center">
                   {row.name}
                 </StyledTableCell>
                 <StyledTableCell component="th" scope="row" align="center">
-                  {row.paid_amount + row.discount}
-                </StyledTableCell>{" "}
-                <StyledTableCell component="th" scope="row" align="center">
-                  {row.paid_amount}
+                  {parseFloat(row.paid_amount).toFixed(2)}
                 </StyledTableCell>
                 <StyledTableCell component="th" scope="row" align="center">
-                  {row.discount}
+                  {parseFloat(
+                    row.paid_amount - row.paid_amount * (row.discount / 100)
+                  ).toFixed(2)}
                 </StyledTableCell>
                 <StyledTableCell component="th" scope="row" align="center">
-                  {row.paid_amount * 0.15}
+                  {parseFloat(row.paid_amount * (row.discount / 100)).toFixed(
+                    2
+                  )}
                 </StyledTableCell>
                 <StyledTableCell component="th" scope="row" align="center">
-                  {row.paid_amount - row.paid_amount * 0.15}
+                  {(parseFloat(row.paid_amount) * 0.15).toFixed(2)}
+                </StyledTableCell>
+                <StyledTableCell component="th" scope="row" align="center">
+                  {(
+                    parseFloat(row.paid_amount) -
+                    (parseFloat(row.paid_amount) * 0.15 +
+                      (parseFloat(row.paid_amount) * parseFloat(row.discount)) /
+                        100)
+                  ).toFixed(2)}
                 </StyledTableCell>
               </StyledTableRow>
             ))}

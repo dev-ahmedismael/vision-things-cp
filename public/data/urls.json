@@ -10,5 +10,6 @@
   "contracts": "https://api.vision-things.com/api/contracts",
   "visits": "https://api.vision-things.com/api/visits",
   "failed_payments": "https://api.vision-things.com/api/failedpayments",
-  "register": "https://api.vision-things.com/api/register"
+  "register": "https://api.vision-things.com/api/register",
+  "contract_number": "https://api.vision-things.com/api/contracts/number"
 }
